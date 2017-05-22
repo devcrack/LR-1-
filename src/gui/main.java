@@ -267,6 +267,32 @@ public class main extends javax.swing.JFrame {
             ||
             evt.getKeyChar() =='\''
             ||
+            evt.getKeyChar() ==':'
+            ||
+            evt.getKeyChar() ==';'
+            ||
+            evt.getKeyChar() ==','
+            ||
+            evt.getKeyChar() =='.'
+            ||
+            evt.getKeyChar() =='['
+            ||
+            evt.getKeyChar() ==']'                
+            ||
+            evt.getKeyChar() =='?'                
+            ||
+            evt.getKeyChar() =='¿'                
+            ||                    
+            evt.getKeyChar() =='¡'                
+            ||                   
+            evt.getKeyChar() =='!'                
+            ||                   
+            evt.getKeyChar() =='#'                
+            ||                      
+            evt.getKeyChar() =='%'                
+            ||                   
+            evt.getKeyChar() =='&'                              
+            ||                   
             evt.getKeyChar() == '-'
             ||
             evt.getKeyChar() == '\\'
@@ -291,7 +317,7 @@ public class main extends javax.swing.JFrame {
             ||
             evt.getKeyChar() =='+'
             ||
-            evt.getKeyChar() == '+'
+            evt.getKeyChar() == '/'
             ||
             evt.getKeyCode() == 8
             ||
