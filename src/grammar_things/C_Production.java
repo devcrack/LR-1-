@@ -43,7 +43,7 @@ public class C_Production {
     public static boolean check_production(String str)
     {
         String meta_chars = "(\\\\>|\\\\\\\\|\\\\\\||\\\\<)";
-        String others = "\\:|;|,|\\.|\\[|\\]|\\*|\\+|\\?|¿|¡|!|#|%|\\&|/";
+        String others = "\\:|;|,|\\.|\\[|\\]|\\*|\\+|\\?|¿|¡|!|#|%|\\&|/|-";
         String t = "(((\\w)+_*(\\w)*|\\(|\\)|(\\w)*_*(\\w)+|\\w|"+ others + ")'?)";
         String NT_right = "(<" + t + "+" + ">)";
         String left_side = "(" + meta_chars + "*" + t  + "+" + "|"+ meta_chars + "+" + t + "*)+";
@@ -89,6 +89,10 @@ public class C_Production {
     }
     
     
+    /**
+     * Load the left side of a production from a given String. 
+     * @param str 
+     */
     public void ld_production(String str)
     {
         char crrt_symbol = '\0';
@@ -105,8 +109,8 @@ public class C_Production {
             {
                 case '<':
                     if(i > 0 && str.charAt(i - 1) != '\\' && str_blr.length() > 0) {
-                            this.insert_TerminalS(str_blr.toString());
-                            str_blr = new StringBuilder();
+                        this.insert_TerminalS(str_blr.toString());
+                        str_blr = new StringBuilder();
                     }
                     break;
                 case '>':
@@ -152,7 +156,19 @@ public class C_Production {
             return true;
         if( (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
             return true;
-        if(c == '\'' || c == '~' || c == '(' || c == ')')
+        if(
+                c == '\'' || c == '~' || c == '(' || c == ')'
+                ||
+                c == ':' || c==';'|| c == ','
+                ||
+                c =='.'|| c =='['|| c==']' 
+                ||
+                c =='*'|| c=='+'|| c =='?'
+                ||
+                c =='¿'|| c== '¡'||c == '!'
+                |
+                c == '#'|| c == '%' ||c == '&'||c =='/'
+          )
             return true;
         return false;
     }
