@@ -320,14 +320,14 @@ public class main extends javax.swing.JFrame {
                         "ERROR", JOptionPane.PLAIN_MESSAGE,
                         JOptionPane.ERROR_MESSAGE, null, options, options[0]);
                     if( n_error == JOptionPane.OK_OPTION)
-                    this.jTxt_Area_wrk_field.getCaret().setVisible(true);
+                        this.jTxt_Area_wrk_field.getCaret().setVisible(true);
                 }
             }
             else
-            this.jTxt_Area_wrk_field.setEditable(true);
+                this.jTxt_Area_wrk_field.setEditable(true);
         }
         else
-        this.jTxt_Area_wrk_field.setEditable(false);
+            this.jTxt_Area_wrk_field.setEditable(false);
     }//GEN-LAST:event_jTxt_Area_wrk_fieldKeyPressed
 
     private void jBtt_StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtt_StartActionPerformed
@@ -344,6 +344,7 @@ public class main extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
          Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+         
          
          this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }//GEN-LAST:event_formWindowOpened
