@@ -34,7 +34,7 @@ public class C_Atomic_Symbol {
     
     protected boolean is_META_character()
     {
-        String metacharacters =  " + * < > | \\\\";
+        String metacharacters =  "< > | \\\\";
         
         if(metacharacters.contains(this.symbol))
              return true;
