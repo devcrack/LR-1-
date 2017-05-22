@@ -101,7 +101,7 @@ public class C_Grammar {
     
     /**
      * 
-     * @return List of NonTerminals that leads the production in the grammar.
+     * @return List of NonTerminals that leads the production in the grammar without repetition.
      */
     public ArrayList<String>get_Non_Terminals()
     {
@@ -118,8 +118,8 @@ public class C_Grammar {
     }
     
     /**
-     * Determine the number of Non Terminals that does not have repitition in the grammar.
-     * @return The number of Productions that have a terminal without repitition.
+     * Determine the number of Non Terminals that does not have repetition in the grammar.
+     * @return The number of Productions that have a terminal without repetition.
      */
     public int number_Terminals_leads() {
         int cont = 0;
