@@ -363,16 +363,15 @@ public class main extends javax.swing.JFrame {
         else 
         {
             this.print_grammar();
-            this.first_follow = new C_First_Follow(this.grammar);
+//            this.first_follow = new C_First_Follow(this.grammar);
 //            this.first_follow.calculate_first_set();
         }
     }//GEN-LAST:event_jBtt_StartActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
          
-         
-         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }//GEN-LAST:event_formWindowOpened
 
     
