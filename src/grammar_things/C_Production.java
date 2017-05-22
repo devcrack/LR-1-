@@ -42,8 +42,9 @@ public class C_Production {
     
     public static boolean check_production(String str)
     {
-        String meta_chars = "(\\\\\\*|\\\\\\+|\\\\>|\\\\\\\\|\\\\\\||\\\\<|\\\\-)";
-        String t = "(((\\w)+_*(\\w)*|\\(|\\)|(\\w)*_*(\\w)+|\\w|)'?)";
+        String meta_chars = "(\\\\>|\\\\\\\\|\\\\\\||\\\\<)";
+        String others = "\\:|;|,|\\.|\\[|\\]|\\*|\\+|\\?|¿|¡|!|#|%|\\&|/";
+        String t = "(((\\w)+_*(\\w)*|\\(|\\)|(\\w)*_*(\\w)+|\\w|"+ others + ")'?)";
         String NT_right = "(<" + t + "+" + ">)";
         String left_side = "(" + meta_chars + "*" + t  + "+" + "|"+ meta_chars + "+" + t + "*)+";
         Matcher matcher;
@@ -136,7 +137,7 @@ public class C_Production {
     
     private boolean is_Metacharecter(char c)
     {
-        String metacharacters =  "- + * < > | \\\\";
+        String metacharacters =  "< > | \\\\";
         
         if(metacharacters.contains("" + c + ""))
              return true;
