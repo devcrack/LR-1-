@@ -332,13 +332,7 @@ public class main extends javax.swing.JFrame {
                 lines = this.jTxt_Area_wrk_field.getText().split("\n");
                 flag = C_Production.check_production(lines[lines.length - 1]);
                 this.jTxt_Area_wrk_field.setEditable(flag);
-
-                if(flag)
-                {
-                    C_Production nw_pr = new C_Production();
-                    // nw_pr.load_production(lines[lines.length - 1]);
-                }
-                else
+                if(!flag)
                 {
                     Object[] options = {"OK"};
                     this.n_error = JOptionPane.showOptionDialog(this,
@@ -363,8 +357,8 @@ public class main extends javax.swing.JFrame {
         else 
         {
             this.print_grammar();
-//            this.first_follow = new C_First_Follow(this.grammar);
-//            this.first_follow.calculate_first_set();
+            this.first_follow = new C_First_Follow(this.grammar);
+            this.first_follow.calculate_first_set();
         }
     }//GEN-LAST:event_jBtt_StartActionPerformed
 
