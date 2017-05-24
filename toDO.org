@@ -1,0 +1,8 @@
+* TODO Test More Grammars
+* DONE Load the examples of First Sets and LR(1) seen in class.
+* DONE Correct the method for load a grammar.
+* DONE Calculate the First Sets according to requierements and the news specifications that Profesor have dictated.
+* Folios DUI
+ + 7Am 1514753
+ + 7pm 1514754
+
