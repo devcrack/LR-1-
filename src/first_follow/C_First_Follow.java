@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Stack;
 import symbol.C_Symbol;
 
 /**
@@ -18,11 +19,13 @@ import symbol.C_Symbol;
  */
 public class C_First_Follow {
     
-     /**
-     * The number of sets is given for the number of Terminals in function of their respective productions;
+    /**
+     * This hash map is for store the Sets for First, Where the key is the Non Terminal and its value is a list of symbols that belong to this sets.
      */
-//    ArrayList<ArrayList<C_Symbol>>first_set;
     HashMap<String, ArrayList<C_Symbol>> first_set;
+    /**
+     * Reference to the grammar previously loaded.
+     */
     C_Grammar grammar;
     
     
@@ -37,29 +40,100 @@ public class C_First_Follow {
         Iterator it = g.get_Non_Terminals().iterator();
         
         this.first_set = new HashMap<String,ArrayList<C_Symbol>>();        
-        while(it.hasNext()) 
+        while(it.hasNext()) //Initialize sets for all non terminals.
             first_set.put((String) it.next(),new ArrayList<C_Symbol>());
     }
      
+    private Map.Entry srch_entry_in_FS(String aKey)
+    {
+        Iterator iterator = this.first_set.entrySet().iterator();
+        Map.Entry entry = null;
+        
+        while(iterator.hasNext()){
+            entry = (Map.Entry)iterator.next();
+            if(((String)entry.getKey()).compareTo(aKey) == 0)
+                return entry;
+        }
+        return entry;
+    }
     
+    /**
+     * Calculate the Entire First Set for the grammar.
+     */
     public void calculate_first_set() {
         boolean change_it = true;
         Iterator map_iterator;
+        String aKey;       
         ArrayList<Integer>indexs = new ArrayList<Integer>();
         C_Symbol first;
+        C_Symbol first_symbol;        
+        HashMap<String, ArrayList<Integer>> sets_indexs = this.get_First_Setp1();        
+        ArrayList<Integer>list_to_BAN;
+        boolean finish = false;
+        Iterator set_index_It;
         
-        while(change_it) {
-            map_iterator = this.first_set.entrySet().iterator();
-            while(map_iterator.hasNext()) {
-                Map.Entry entry = (Map.Entry) map_iterator.next();
-                indexs = this.grammar.get_indexs((String) entry.getKey());
-                for(int i : indexs) {
-                    first = this.grammar.get_First(i);
-                    if(first !=null)
-                        ((ArrayList<C_Symbol>)entry.getValue()).add(first);
+        while(!finish) {
+            set_index_It = sets_indexs.entrySet().iterator();
+            while(set_index_It.hasNext()){
+                Map.Entry entry = (Map.Entry)set_index_It.next();//Traveling in the list of index that lack to be analyzed.
+                Map.Entry entry_set_first_to_SET = this.srch_entry_in_FS((String)entry.getKey()); //Getting the entry of the First set for to be stablish.
+                
+                list_to_BAN = new ArrayList<Integer>();            
+                for(int i : (ArrayList<Integer>)entry.getValue()) {
+                    first_symbol = this.grammar.get_First_Symbol(i); //Get the first symbol that lack analized.                
+                    Map.Entry entry_first_set = this.srch_entry_in_FS(first_symbol.getNt());//Getting the entry of the First set that contains the symbols.                                
+                    if(!((ArrayList<C_Symbol>)entry_first_set.getValue()).isEmpty()) {
+                        if(((String)entry_set_first_to_SET.getKey()).compareTo((String)entry_first_set.getKey()) != 0) 
+                            for(C_Symbol symbol : (ArrayList<C_Symbol>)entry_first_set.getValue()) 
+                                ((ArrayList<C_Symbol>)entry_set_first_to_SET.getValue()).add(symbol);                                            
+                        list_to_BAN.add(i);
+                    }                
                 }
+                for(int i : list_to_BAN) 
+                    ((ArrayList<Integer>)entry.getValue()).remove((Object)i);                
             }
-        }
+            set_index_It = sets_indexs.entrySet().iterator();
+            while(set_index_It.hasNext()) {
+                Map.Entry entry = (Map.Entry)set_index_It.next();
+                if(!((ArrayList<Integer>)entry.getValue()).isEmpty()) {
+                    finish = false;
+                    break;
+                }
+                else
+                    finish = true;
+                    
+            }                
+        }                              
     }
     
+    /**
+     * Fills by first time the sets of the productions that have a first symbol directly, in other words 
+     * gets the first symbol in the production just if this is a Terminal.
+     * @return A List with the indexs of the list of productions that has not been analyze.
+     */
+    
+    private HashMap<String, ArrayList<Integer>> get_First_Setp1() {
+        Iterator map_iterator;        
+        HashMap<String, ArrayList<Integer>> sets_indexs = new HashMap<String, ArrayList<Integer>>();
+        ArrayList<Integer>indexs = new ArrayList<Integer>();
+        C_Symbol first_symbol;
+        map_iterator = this.first_set.entrySet().iterator();
+        while(map_iterator.hasNext()) {
+            Map.Entry entry = (Map.Entry) map_iterator.next();//Get an entry of the hashmap
+//            sets_indexs.put((String)entry.getKey(), new ArrayList<Integer>());//Initilize the the Hashmap for store the indexs of the sets.
+            indexs = this.grammar.get_indexs((String) entry.getKey()); // Get the indexs to this NonTerminal
+            for(int i : indexs) {
+                first_symbol = this.grammar.get_First(i);//Getting the first Symbol if have directly.
+                if(first_symbol !=null)
+                    ((ArrayList<C_Symbol>)entry.getValue()).add(first_symbol);                    
+                else {
+                    if(sets_indexs.containsKey(entry.getKey()) == false) 
+                        sets_indexs.put((String)entry.getKey(), new ArrayList<Integer>());//Initilize the the Hashmap for store the indexs of the sets.                                       
+                    sets_indexs.get((String)entry.getKey()).add(i);
+                }
+                    
+            }
+        }
+        return sets_indexs;
+    }
 }
