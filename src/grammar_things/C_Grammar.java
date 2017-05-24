@@ -157,5 +157,12 @@ public class C_Grammar {
      * @param index position of the Production in the grammar.
      * @return The symbol that correspond to first if this production have it directly if else returns NULL.
      */
-    public C_Symbol get_First(int index) { return this.grammar.get(index).get_first(); }
+    public C_Symbol get_First(int index) { return this.grammar.get(index).get_first_T_Symbol(); }
+    
+    /**
+     * Get the first symbol no matter what kind of symbol it is.
+     * @param index position of the Production in the grammar.
+     * @return a Symbol.
+     */
+    public C_Symbol get_First_Symbol(int index) { return this.grammar.get(index).getRight().get(0);}
 }
