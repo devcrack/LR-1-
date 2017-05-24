@@ -157,17 +157,13 @@ public class C_Production {
         if( (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
             return true;
         if(
-                c == '\'' || c == '~' || c == '(' || c == ')'
-                ||
-                c == ':' || c==';'|| c == ','
-                ||
-                c =='.'|| c =='['|| c==']' 
-                ||
-                c =='*'|| c=='+'|| c =='?'
-                ||
-                c =='¿'|| c== '¡'||c == '!'
-                |
-                c == '#'|| c == '%' ||c == '&'||c =='/'
+                c == '\'' || c == '~' || c == '(' || 
+                c == ')' || c == ':' || c==';'    ||
+                c == ',' || c =='.'|| c =='['     || 
+                c==']' || c =='*'|| c=='+'        || 
+                c =='?' || c == '-'|| c =='¿'     || 
+                c== '¡'||c == '!'||c == '#'       || 
+                c == '%' ||c == '&'||c =='/'
           )
             return true;
         return false;
@@ -184,8 +180,10 @@ public class C_Production {
      * Gets the first Symbol if this have it directly.
      * @return The terminal symbol if this have it directly if else returns NULL;
      */
-    public C_Symbol get_first() {
+    public C_Symbol get_first_T_Symbol() {
         C_Symbol first_smbl = this.right.get(0);
-        return (!first_smbl.is_T_EMPTY()) ? first_smbl : null;
+        return (!first_smbl.is_T_EMPTY() || first_smbl.getEpsilon().contains("~") == true) ? first_smbl : null;
     }
+    
+    public C_Symbol get_first_NT_Symbol() { return this.right.get(0); }
 }
