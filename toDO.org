@@ -1,4 +1,12 @@
 * TODO Test More Grammars
+* TODO Resolve the problems with the first set calculate
+  + [ ] Check the problem with grammar 2.g
+  + [ ] Check the problem with grammar 3.g confuse with the Non terminal Symbol in the side left.
+* TODO Print the First Sets[0/3]
+   + [ ] Stablish the Table Model.
+   + [ ] Make the vector for the header of table.
+   + [ ] Build the vector for the content of table.
+
 * DONE Load the examples of First Sets and LR(1) seen in class.
 * DONE Correct the method for load a grammar.
 * DONE Calculate the First Sets according to requierements and the news specifications that Profesor have dictated.
