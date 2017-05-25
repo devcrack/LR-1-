@@ -417,12 +417,18 @@ public class main extends javax.swing.JFrame {
             mdl.addColumn((String)entry.getKey());
             index_row = 0;
                         
-            for(C_Symbol symbol : ((ArrayList<C_Symbol>)entry.getValue())) {                
-                mdl.setValueAt(symbol.getT(), index_row, mdl.getColumnCount() -1 );
+            for(C_Symbol symbol : ((ArrayList<C_Symbol>)entry.getValue())) { 
+                if(!symbol.is_T_EMPTY())
+                    if(symbol.TERMINAL_is_Metacharecter())
+                        mdl.setValueAt("\\" +symbol.getT(), index_row, mdl.getColumnCount() -1 );
+                    else
+                        mdl.setValueAt(symbol.getT(), index_row, mdl.getColumnCount() -1 );
+                else
+                    mdl.setValueAt(symbol.getEpsilon(), index_row, mdl.getColumnCount() -1 );
                 index_row++;
             }                           
         }                
-        this.Jtable_First_Set.setModel(mdl);                
+        this.Jtable_First_Set.setModel(mdl);  
     }
     
     
