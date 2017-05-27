@@ -72,7 +72,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jPanel_Work_Field.setBorder(javax.swing.BorderFactory.createTitledBorder("Area de Trabajo"));
+        jPanel_Work_Field.setBorder(javax.swing.BorderFactory.createTitledBorder("Work Area"));
 
         jTxt_Area_wrk_field.setColumns(20);
         jTxt_Area_wrk_field.setRows(5);
@@ -130,7 +130,7 @@ public class main extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
 
         jMenu1.setText("File");
