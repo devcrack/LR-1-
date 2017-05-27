@@ -65,6 +65,7 @@ public class C_First_Follow {
         HashMap<String, ArrayList<Integer>> sets_indexs = this.get_First_Setp1();        
         ArrayList<Integer>list_to_BAN;
         boolean finish = false;
+        boolean insert_ban_lst = true;
         Iterator set_index_It;
         if(sets_indexs.size() > 0)
         {
@@ -78,11 +79,34 @@ public class C_First_Follow {
                     for(int i : (ArrayList<Integer>)entry.getValue()) {
                         first_symbol = this.grammar.get_First_Symbol(i); //Get the first symbol that lack analized.                
                         Map.Entry entry_first_set = this.srch_entry_in_FS(first_symbol.getNt());//Getting the entry of the First set that contains the symbols.                                
-                        if(!((ArrayList<C_Symbol>)entry_first_set.getValue()).isEmpty()) {
-                            if(((String)entry_set_first_to_SET.getKey()).compareTo((String)entry_first_set.getKey()) != 0) 
-                                for(C_Symbol symbol : (ArrayList<C_Symbol>)entry_first_set.getValue()) 
-                                    ((ArrayList<C_Symbol>)entry_set_first_to_SET.getValue()).add(symbol);                                            
-                            list_to_BAN.add(i);
+                        if(!((ArrayList<C_Symbol>)entry_first_set.getValue()).isEmpty()) { //We check that don't be an empty set.                                     
+                            /**Determining if this entry have to be banned of the list
+                             *********************************************************/                          
+                            //1.Get the entry that of the list of the indexs and if can insert in the first set.
+                            insert_ban_lst = true;
+                            Map.Entry tmp_entry = null; 
+                            if(sets_indexs.containsKey(first_symbol.getNt()))
+                            {
+                                Iterator tmp_it  =  sets_indexs.entrySet().iterator();
+                                
+                            
+                                while(tmp_it.hasNext()) {
+                                    tmp_entry = (Map.Entry)tmp_it.next();
+                                
+                                    if(((String)tmp_entry.getKey()).compareTo(first_symbol.getNt()) == 0 )
+                                        if(((ArrayList<Integer>)tmp_entry .getValue()).size() > 0) {
+                                            insert_ban_lst = false;
+                                            break;
+                                        }
+                                }
+                            }                            
+                            if(insert_ban_lst) {
+                                if(((String)entry_set_first_to_SET.getKey()).compareTo((String)entry_first_set.getKey()) != 0) 
+                                for(C_Symbol symbol : (ArrayList<C_Symbol>)entry_first_set.getValue()) //Start to fill the current set 
+                                    ((ArrayList<C_Symbol>)entry_set_first_to_SET.getValue()).add(symbol);     
+                                list_to_BAN.add(i);
+                            }
+                                
                         }                
                     }
                     for(int i : list_to_BAN) 
@@ -97,7 +121,6 @@ public class C_First_Follow {
                     }
                     else
                         finish = true;
-                    
                 }                
             }
         }
@@ -154,3 +177,10 @@ public class C_First_Follow {
         return max;         
     }
 }
+
+/**List of songs for programming 
+
+* 1.  Join Us - Wally_Gagel_Xandy_Barry
+* 2.  Shake It Up - Wally Gagel
+ 
+ **/
