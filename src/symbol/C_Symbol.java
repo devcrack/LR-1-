@@ -28,13 +28,17 @@ public class C_Symbol {
      * @param symbol_str 
      */
     public C_Symbol(String symbol_str) {
-        if(symbol_str.compareTo(".") == 0)
+        if(symbol_str.compareTo(".") == 0) {
             this.srch_Symbol = new C_Search_Symbol(symbol_str);
-        else
+            this.nt = new C_NT();
+        }
+        else {
             this.nt = new C_NT(symbol_str);
+            this.srch_Symbol = new C_Search_Symbol();
+        }
         this.t = new C_T();
         this.epsilon = new C_Epsilon();
-        this.srch_Symbol = new C_Search_Symbol();
+        
     }
 
     
@@ -110,7 +114,7 @@ public class C_Symbol {
      * @return True if the Non Terminal Symbols is Empty;
      */
     public boolean is_NT_EMPTY() {
-        return (this.nt.get_NT().length() == 0) ? true : false;
+        return (0 == this.nt.get_NT().length()) ? true : false;
     }
 
     /**
@@ -121,6 +125,10 @@ public class C_Symbol {
     public boolean is_T_EMPTY() {
         return (this.t.get_T().length() == 0) ? true : false;
     }
+    
+    public boolean is_Epsilon_Emtpy(){
+        return (this.epsilon.getEpsilon().length() == 0) ? true : false;
+    }
 
     public boolean TERMINAL_is_Metacharecter() {
         return this.t.is_META_character();
@@ -130,8 +138,8 @@ public class C_Symbol {
     /**
      * @return the srch_Symbol
      */
-    public C_Search_Symbol get_Search_Symbol() {
-        return srch_Symbol;
+    public String get_Srch_Symbol() {
+        return this.srch_Symbol.get_Search_Symbol();
     }
 
     /**
