@@ -45,7 +45,7 @@ public class C_First_Follow {
      
     private Map.Entry srch_entry_in_FS(String aKey)
     {
-        Iterator iterator = this.getFirst_set().entrySet().iterator();
+        Iterator iterator = this.first_set.entrySet().iterator();
         Map.Entry entry = null;
         
         while(iterator.hasNext()){
@@ -84,6 +84,7 @@ public class C_First_Follow {
                              *********************************************************/                          
                             //1.Get the entry that of the list of the indexs and if can insert in the first set.
                             insert_ban_lst = true;
+                            
                             Map.Entry tmp_entry = null; 
                             if(sets_indexs.containsKey(first_symbol.getNt()))
                             {
@@ -99,14 +100,14 @@ public class C_First_Follow {
                                             break;
                                         }
                                 }
-                            }                            
+                            }       
+                            insert_ban_lst = (((String)entry_set_first_to_SET.getKey()).compareTo((String)entry_first_set.getKey()) == 0) ? true : insert_ban_lst;                     
                             if(insert_ban_lst) {
                                 if(((String)entry_set_first_to_SET.getKey()).compareTo((String)entry_first_set.getKey()) != 0) 
-                                for(C_Symbol symbol : (ArrayList<C_Symbol>)entry_first_set.getValue()) //Start to fill the current set 
-                                    ((ArrayList<C_Symbol>)entry_set_first_to_SET.getValue()).add(symbol);     
+                                    for(C_Symbol symbol : (ArrayList<C_Symbol>)entry_first_set.getValue()) //Start to fill the current set 
+                                        ((ArrayList<C_Symbol>)entry_set_first_to_SET.getValue()).add(symbol);     
                                 list_to_BAN.add(i);
                             }
-                                
                         }                
                     }
                     for(int i : list_to_BAN) 
@@ -137,6 +138,7 @@ public class C_First_Follow {
         HashMap<String, ArrayList<Integer>> sets_indexs = new HashMap<String, ArrayList<Integer>>();
         ArrayList<Integer>indexs = new ArrayList<Integer>();
         C_Symbol first_symbol;
+        
         map_iterator = this.getFirst_set().entrySet().iterator();
         while(map_iterator.hasNext()) {
             Map.Entry entry = (Map.Entry) map_iterator.next();//Get an entry of the hashmap
