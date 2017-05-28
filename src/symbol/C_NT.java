@@ -18,4 +18,8 @@ public class C_NT extends C_Atomic_Symbol{
     public String get_NT() {
         return super.get_Atomic_Symbol();
     }
+    
+    public C_NT(String at_symbol) {
+        super(at_symbol);
+    }
 }
