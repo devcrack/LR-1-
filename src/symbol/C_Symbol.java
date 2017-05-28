@@ -28,7 +28,7 @@ public class C_Symbol {
      * @param symbol_str 
      */
     public C_Symbol(String symbol_str) {
-        if(symbol_str.compareTo(".") == 0) {
+        if(symbol_str.compareTo(String.valueOf((char)176)) == 0) {
             this.srch_Symbol = new C_Search_Symbol(symbol_str);
             this.nt = new C_NT();
         }
