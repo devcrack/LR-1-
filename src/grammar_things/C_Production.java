@@ -34,20 +34,16 @@ public class C_Production {
     public C_Production(C_Production nw_pr) {
         this.left = new ArrayList<C_Symbol>();
         this.right = new ArrayList<C_Symbol>();
-        
+        //Stablish the left side of the grammar
         C_Symbol nw_Symbol = new C_Symbol(nw_pr.getLeft());        
         
         this.left.add(nw_Symbol);
         
-        Iterator it = this.right.iterator();        
-        ArrayList<C_Symbol>tmp_list;
+        Iterator it = nw_pr.getRight().iterator();               
         
-        while(it.hasNext()) {
-            tmp_list = (ArrayList<C_Symbol>)it.next();
-            for(C_Symbol smb : tmp_list) {
-                nw_Symbol = new C_Symbol(smb);
-                this.right.add(nw_Symbol);
-            }
+        while(it.hasNext()) {           
+            nw_Symbol = new C_Symbol((C_Symbol)it.next());
+            this.right.add(nw_Symbol);            
         }
     }
 
