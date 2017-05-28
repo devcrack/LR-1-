@@ -18,6 +18,10 @@ public class C_Atomic_Symbol {
         this.symbol = new String();
     }
 
+    public C_Atomic_Symbol(String a_symbol) {
+        this.symbol = new  String();
+        this.symbol = a_symbol;
+    }
     /**
      * @return the simbolos
      */
