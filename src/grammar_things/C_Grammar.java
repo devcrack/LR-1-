@@ -24,11 +24,14 @@ public class C_Grammar {
      * @param gram 
      */
     public C_Grammar(C_Grammar gram) { 
-        Iterator it = grammar.iterator();
+        Iterator it = gram.getGrammar().iterator();
         C_Production nw_pr;
+        
         this.grammar = new ArrayList<C_Production>();
-        while(it.hasNext()) {
-            
+        
+        while(it.hasNext()) {           
+            nw_pr = new C_Production((C_Production)it.next());
+            this.grammar.add(nw_pr);
         }
     }
 
