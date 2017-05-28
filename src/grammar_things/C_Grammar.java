@@ -6,6 +6,7 @@
 package grammar_things;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import symbol.C_Symbol;
 
 /**
@@ -16,6 +17,20 @@ public class C_Grammar {
     private ArrayList<C_Production> grammar;
     
     public C_Grammar() { this.grammar = new ArrayList<C_Production>(); }
+    
+    
+    /**
+     * Creates a new grammar from another grammar that already exists.
+     * @param gram 
+     */
+    public C_Grammar(C_Grammar gram) { 
+        Iterator it = grammar.iterator();
+        C_Production nw_pr;
+        this.grammar = new ArrayList<C_Production>();
+        while(it.hasNext()) {
+            
+        }
+    }
 
     /**
      * @return the grammar
