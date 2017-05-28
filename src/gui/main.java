@@ -24,6 +24,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import symbol.C_Symbol;
 import javax.swing.table.DefaultTableModel;
+import lr_1.C_LR_1;
 /**
  *
  * @author devcrack
@@ -32,7 +33,7 @@ public class main extends javax.swing.JFrame {
     int n_error;
     C_Grammar grammar;
     C_First_Follow first_follow;
-    
+    C_LR_1 lr1;
     /**
      * Creates new form main
      */
@@ -56,13 +57,13 @@ public class main extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Jtable_First_Set = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTxt_Aux_Area = new javax.swing.JTextArea();
+        jTextField1 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMen_It_Nw = new javax.swing.JMenuItem();
@@ -82,7 +83,7 @@ public class main extends javax.swing.JFrame {
         jPanel_Work_Field.setBorder(javax.swing.BorderFactory.createTitledBorder("Work Area"));
 
         jTxt_Area_wrk_field.setColumns(20);
-        jTxt_Area_wrk_field.setFont(new java.awt.Font("Courier", 0, 12)); // NOI18N
+        jTxt_Area_wrk_field.setFont(new java.awt.Font("Courier", 0, 14)); // NOI18N
         jTxt_Area_wrk_field.setRows(5);
         jTxt_Area_wrk_field.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -99,7 +100,7 @@ public class main extends javax.swing.JFrame {
         );
         jPanel_Work_FieldLayout.setVerticalGroup(
             jPanel_Work_FieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jBtt_Iniciar.setText("Start");
@@ -111,7 +112,7 @@ public class main extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("First Set"));
 
-        Jtable_First_Set.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+        Jtable_First_Set.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
         Jtable_First_Set.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -138,20 +139,9 @@ public class main extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 98, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTree1.setFont(new java.awt.Font("Courier", 0, 12)); // NOI18N
+        jTree1.setFont(new java.awt.Font("Courier", 0, 14)); // NOI18N
         jScrollPane3.setViewportView(jTree1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -169,7 +159,7 @@ public class main extends javax.swing.JFrame {
 
         jTxt_Aux_Area.setEditable(false);
         jTxt_Aux_Area.setColumns(20);
-        jTxt_Aux_Area.setFont(new java.awt.Font("Courier", 0, 12)); // NOI18N
+        jTxt_Aux_Area.setFont(new java.awt.Font("Courier", 0, 14)); // NOI18N
         jTxt_Aux_Area.setRows(5);
         jScrollPane4.setViewportView(jTxt_Aux_Area);
 
@@ -181,8 +171,11 @@ public class main extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
         );
+
+        jTextField1.setEditable(false);
+        jTextField1.setText("jTextField1");
 
         jMenu1.setText("File");
 
@@ -234,47 +227,40 @@ public class main extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(241, Short.MAX_VALUE)
-                .addComponent(jBtt_Iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(465, 465, 465))
-            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(409, 409, 409)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel_Work_Field, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(jBtt_Iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel_Work_Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(245, 245, 245)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBtt_Iniciar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 12, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jPanel_Work_Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtt_Iniciar)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -297,6 +283,7 @@ public class main extends javax.swing.JFrame {
 
         if(f != null)
         {
+            this.jTextField1.setText(f.getName());
             try { f_rd = new FileReader(f);}
             catch(FileNotFoundException ex)
             {
@@ -463,16 +450,23 @@ public class main extends javax.swing.JFrame {
             this.jTxt_Area_wrk_field.setEditable(false);
     }//GEN-LAST:event_jTxt_Area_wrk_fieldKeyPressed
 
+
+    /**
+     * Supreme Method i the Law Dude!!!!!!!!!!!!!
+     * @param evt 
+     */
     private void jBtt_StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtt_StartActionPerformed
         this.load_grammar();
         if(!this.grammar.is_valid_grammar())
             this.show_Error();            
         else 
         {
-            this.print_grammar();
+            this.print_grammar(this.grammar);
             this.first_follow = new C_First_Follow(this.grammar);
             this.first_follow.calculate_first_set();
             this.load_first_Set_iN_Grid();
+//            this.lr1 = new C_LR_1(this.grammar);            
+//            this.print_grammar(this.lr1.getIncreased_grammar());
         }
     }//GEN-LAST:event_jBtt_StartActionPerformed
 
@@ -508,6 +502,7 @@ public class main extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
          
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        this.jTextField1.setText("Opened File:NULL");
     }//GEN-LAST:event_formWindowOpened
 
     
@@ -541,9 +536,9 @@ public class main extends javax.swing.JFrame {
     /**
      * Prints the grammar that has been loaded by the program. in the main Window Frame.
      */
-    private void print_grammar()
+    private void print_grammar(C_Grammar a_grammar)
     {
-        for(C_Production pr : this.grammar.getGrammar())
+        for(C_Production pr : a_grammar.getGrammar())
         {
             //print the left side of the production;
             this.jTxt_Aux_Area.append(pr.getLeft());
@@ -560,10 +555,15 @@ public class main extends javax.swing.JFrame {
                         else 
                             this.jTxt_Aux_Area.append(smbl.getT());
                     else 
-                        this.jTxt_Aux_Area.append(smbl.getEpsilon());                                            
+                        if(!smbl.is_Epsilon_Emtpy())
+                            this.jTxt_Aux_Area.append(smbl.getEpsilon());                                            
+                        else
+                            this.jTxt_Aux_Area.append(smbl.get_Srch_Symbol());                                            
+                            
             }
             this.jTxt_Aux_Area.append("\n");        
         }
+        this.jTxt_Aux_Area.append("\n\n");      
     }
     
     /**
@@ -613,7 +613,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jMenu_Aiuda;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel_Work_Field;
@@ -621,6 +620,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTree jTree1;
     private javax.swing.JTextArea jTxt_Area_wrk_field;
     private javax.swing.JTextArea jTxt_Aux_Area;
