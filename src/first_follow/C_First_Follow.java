@@ -182,5 +182,6 @@ public class C_First_Follow {
 
 * 1.  Join Us - Wally_Gagel_Xandy_Barry
 * 2.  Shake It Up - Wally Gagel
- 
+* 3.  We Work Hard but Party Harder - Chris Constantinou
+* 4.  Darkness Makes The Heart  Grow Stronger  -  
  **/
