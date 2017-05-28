@@ -14,6 +14,11 @@ public class C_Epsilon extends C_Atomic_Symbol{
     
     public C_Epsilon() { super(); }
     
+    public C_Epsilon(String at_symbol){
+        super(at_symbol);
+    }
+            
+    
     /** Get this symbol basically ~
      * @return the epsilon
      */
