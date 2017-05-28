@@ -6,6 +6,7 @@
 package grammar_things;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import symbol.C_Symbol;
@@ -26,7 +27,29 @@ public class C_Production {
         this.right = new ArrayList<C_Symbol>();
     }
 
-    
+    /**
+     * Create a new Production From a given production that already exists.
+     * @param nw_pr 
+     */
+    public C_Production(C_Production nw_pr) {
+        this.left = new ArrayList<C_Symbol>();
+        this.right = new ArrayList<C_Symbol>();
+        
+        C_Symbol nw_Symbol = new C_Symbol(nw_pr.getLeft());        
+        
+        this.left.add(nw_Symbol);
+        
+        Iterator it = this.right.iterator();        
+        ArrayList<C_Symbol>tmp_list;
+        
+        while(it.hasNext()) {
+            tmp_list = (ArrayList<C_Symbol>)it.next();
+            for(C_Symbol smb : tmp_list) {
+                nw_Symbol = new C_Symbol(smb);
+                this.right.add(nw_Symbol);
+            }
+        }
+    }
 
     
     public String getLeft() {
