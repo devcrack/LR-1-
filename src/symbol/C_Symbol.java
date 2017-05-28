@@ -93,14 +93,14 @@ public class C_Symbol {
     /**
      * @return the srch_Symbol
      */
-    public C_Search_Symbol getSrch_Symbol() {
+    public C_Search_Symbol get_Search_Symbol() {
         return srch_Symbol;
     }
 
     /**
      * @param srch_Symbol the srch_Symbol to set
      */
-    public void setSrch_Symbol(String srch_smbl) {
+    public void set_Search_Symbol(String srch_smbl) {
         this.srch_Symbol.set_Atomic_Symbol(srch_smbl);
     }
 
