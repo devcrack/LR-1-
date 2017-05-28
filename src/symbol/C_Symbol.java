@@ -20,8 +20,44 @@ public class C_Symbol {
         this.nt = new C_NT();
         this.t = new C_T();
         this.epsilon = new C_Epsilon();
+        this.srch_Symbol = new C_Search_Symbol();
+    }
+    
+    /**
+     * Create a Symbol Stablish its Non terminal from left side.
+     * @param symbol_str 
+     */
+    public C_Symbol(String symbol_str) {
+        if(symbol_str.compareTo(".") == 0)
+            this.srch_Symbol = new C_Search_Symbol(symbol_str);
+        else
+            this.nt = new C_NT(symbol_str);
+        this.t = new C_T();
+        this.epsilon = new C_Epsilon();
+        this.srch_Symbol = new C_Search_Symbol();
     }
 
+    
+    public C_Symbol(C_Symbol smbl) {
+        if(!smbl.is_NT_EMPTY()) {
+            this.nt = new C_NT(smbl.getNt());
+            this.t = new C_T();
+            this.epsilon = new C_Epsilon();
+        }
+        else 
+            if(!smbl.is_T_EMPTY()) {
+                this.t = new C_T(smbl.getT());
+                this.nt = new C_NT();
+                this.epsilon = new C_Epsilon();
+            }
+            else {
+                this.epsilon = new C_Epsilon(smbl.getEpsilon());
+                this.nt = new C_NT();
+                this.t = new C_T();
+            }
+        this.srch_Symbol = new C_Search_Symbol();
+    }
+    
     /**
      * @return the nt
      */
@@ -89,6 +125,7 @@ public class C_Symbol {
     public boolean TERMINAL_is_Metacharecter() {
         return this.t.is_META_character();
     }
+       
 
     /**
      * @return the srch_Symbol
